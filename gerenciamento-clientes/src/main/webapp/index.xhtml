@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Gerenciamento de Clientes</title>
+    <h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+    <header class="header">
+        <h1>Gerenciamento de Clientes</h1>
+    </header>
+    <main class="main-content">
+        <section class="search-section">
+            <h2>Pesquisar Clientes</h2>
+            <h:form>
+                <div class="form-group">
+                    <h:outputLabel for="nomePesquisa" value="Nome:" />
+                    <h:inputText id="nomePesquisa" value="#{clienteController.nomePesquisa}" />
+                    <h:commandButton value="Pesquisar" action="#{clienteController.listarClientes()}"
+                        class="btn btn-search" />
+                </div>
+            </h:form>
+        </section>
+        <section class="table-section">
+            <h2>Lista de Clientes</h2>
+            <h:dataTable value="#{clienteController.clientes}" var="cliente" styleClass="data-table">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome" />
+                    </f:facet>
+                    <h:outputText value="#{cliente.nome}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Email" />
+                    </f:facet>
+                    <h:outputText value="#{cliente.email}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Telefone" />
+                    </f:facet>
+                    <h:outputText value="#{cliente.telefone}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações" />
+                    </f:facet>
+                    <div class="actions">
+                        <h:commandButton value="Editar" action="#{clienteController.editar(cliente)}"
+                            class="btn btn-edit" />
+                        <h:commandButton value="Excluir" action="#{clienteController.excluir(cliente.id)}"
+                            class="btn btn-delete"
+                            onclick="return confirm('Tem certeza que deseja excluir este cliente?');" />
+                    </div>
+                </h:column>
+            </h:dataTable>
+        </section>
+        <section class="actions-section">
+            <h:form>
+                <h:commandButton value="Cadastrar Cliente" action="#{clienteController.redirecionarParaForm()}"
+                    class="btn btn-primary" immediate="true" />
+            </h:form>
+        </section>
+    </main>
+</h:body>
+
+</html>

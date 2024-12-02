@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Cadastrar Cliente</title>
+    <h:outputStylesheet library="css" name="form.css" />
+</h:head>
+<h:body>
+    <header class="header">
+        <h1>Cadastrar Cliente</h1>
+    </header>
+    <main class="main-content">
+        <section class="form-section">
+            <h:form>
+                <h:messages globalOnly="true" styleClass="error-messages" />
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <h:outputLabel for="nome" value="Nome:" />
+                        <h:inputText id="nome" value="#{clienteController.cliente.nome}" required="true" />
+                        <h:message for="nome" style="color: red;" />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="email" value="Email:" />
+                        <h:inputText id="email" value="#{clienteController.cliente.email}" required="true" />
+                        <h:message for="email" style="color: red;" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <h:outputLabel for="telefone" value="Telefone:" />
+                        <h:inputText id="telefone" value="#{clienteController.cliente.telefone}" required="true" />
+                        <h:message for="telefone" style="color: red;" />
+                    </div>
+                    <div class="form-group cep-search">
+                        <h:outputLabel for="cep" value="CEP:" />
+                        <h:inputText id="cep" value="#{clienteController.cliente.cep}" required="true" pattern="\d{8}" title="O CEP deve conter exatamente 8 dígitos."/>
+                        <h:commandButton value="Buscar Cep" action="#{clienteController.consultarCep()}" class="btn btn-secondary" styleClass="cep-search-button">
+                            <f:ajax execute="cep" render="endereco bairro cidade estado" />
+                        </h:commandButton>
+                        <h:message for="cep" style="color: red;" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <h:outputLabel for="endereco" value="Endereço:" />
+                        <h:inputText id="endereco" value="#{clienteController.cliente.endereco}" readonly="true" />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="bairro" value="Bairro:" />
+                        <h:inputText id="bairro" value="#{clienteController.cliente.bairro}" readonly="true" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <h:outputLabel for="cidade" value="Cidade:" />
+                        <h:inputText id="cidade" value="#{clienteController.cliente.cidade}" readonly="true" />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="estado" value="Estado:" />
+                        <h:inputText id="estado" value="#{clienteController.cliente.estado}" readonly="true" />
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <h:commandButton value="Salvar" action="#{clienteController.salvar()}" class="btn btn-primary" />
+                    <h:commandButton value="Voltar" action="#{clienteController.redirecionarParaIndex()}" class="btn btn-secondary" immediate="true" />
+                </div>
+            </h:form>
+        </section>
+    </main>
+</h:body>
+</html>
