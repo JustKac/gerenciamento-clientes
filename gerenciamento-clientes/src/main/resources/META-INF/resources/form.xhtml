@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Cadastro de Cliente</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="nome" value="Nome:" />
+            <h:inputText id="nome" value="#{clienteView.cliente.nome}" required="true" />
+
+            <h:outputLabel for="email" value="Email:" />
+            <h:inputText id="email" value="#{clienteView.cliente.email}" required="true" />
+
+            <h:outputLabel for="telefone" value="Telefone:" />
+            <h:inputText id="telefone" value="#{clienteView.cliente.telefone}" />
+
+            <h:outputLabel for="cep" value="CEP:" />
+            <h:inputText id="cep" value="#{clienteView.cliente.cep}" required="true">
+                <f:ajax event="blur" listener="#{clienteView.buscarEndereco}" render="endereco,bairro,cidade,estado" immediiate="true"/>
+            </h:inputText>
+
+            <h:outputLabel for="endereco" value="Endereço:" />
+            <h:inputText id="endereco" value="#{clienteView.cliente.endereco}" required="true" />
+
+            <h:outputLabel for="bairro" value="Bairro:" />
+            <h:inputText id="bairro" value="#{clienteView.cliente.bairro}" required="true" />
+
+            <h:outputLabel for="cidade" value="Cidade:" />
+            <h:inputText id="cidade" value="#{clienteView.cliente.cidade}" required="true" />
+
+            <h:outputLabel for="estado" value="Estado:" />
+            <h:inputText id="estado" value="#{clienteView.cliente.estado}" required="true" />
+        </h:panelGrid>
+        <h:commandButton value="Salvar" action="#{clienteView.save}" />
+        <h:commandButton value="Voltar" action="index.xhtml?faces-redirect=true" immediate="true" />
+        <p:dialog id="popupDialog" header="Mensagem" widgetVar="popupDialog" closable="true" modal="true">
+            <p:messages id="popupMessages" autoUpdate="true" showDetail="true" showSummary="true" />
+        </p:dialog>
+    </h:form>
+</h:body>
+
+</html>
