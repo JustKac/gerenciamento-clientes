@@ -18,7 +18,7 @@
 
             <h:outputLabel for="cep" value="CEP:" />
             <h:inputText id="cep" value="#{clienteView.cliente.cep}" required="true">
-                <f:ajax event="blur" listener="#{clienteView.buscarEndereco}" render="endereco,bairro,cidade,estado" immediiate="true"/>
+                <f:ajax event="blur" listener="#{clienteView.buscarEndereco}" render="endereco,bairro,cidade,estado" immediate="true"/>
             </h:inputText>
 
             <h:outputLabel for="endereco" value="Endereço:" />
@@ -40,5 +40,4 @@
         </p:dialog>
     </h:form>
 </h:body>
-
 </html>

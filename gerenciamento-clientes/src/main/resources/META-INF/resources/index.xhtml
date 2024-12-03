@@ -8,7 +8,6 @@
 </h:head>
 <h:body>
     <h:form>
-        
         <!-- Campo de Busca por Nome -->
         <h:outputLabel for="nomeBusca" value="Buscar por Nome" />
         <p:inputText id="nomeBusca" value="#{clienteView.nomeBusca}" />
@@ -42,7 +41,7 @@
             </p:column>
             <p:column>
                 <h:commandButton value="Editar" action="#{clienteView.update(cliente)}" />
-                <h:commandButton value="Excluir" action="#{clienteView.delete(cliente.id)}" />
+                <h:commandButton value="Excluir" action="#{clienteView.delete(cliente.id)}" onclick="return confirm('Tem certeza que deseja excluir este cliente?');" />
             </p:column>
         </p:dataTable>
         <!-- Botão de Novo Cliente -->
